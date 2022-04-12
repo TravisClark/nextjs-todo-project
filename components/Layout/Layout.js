@@ -1,13 +1,14 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
+import { useSelector } from "react-redux";
+import TodoIntroduction from "../Todo/TodoIntroduction/TodoIntroduction";
 import Header from "./Header";
-import Notification from "../UI/Notification/Notification";
-import {useSelector} from 'react-redux';
 
 function Layout(props){
-    
+    const isLogin = useSelector((state)=> state.auth.isLogin)
     return <Fragment>
-        <Header/>
-        {props.children}
+        <Header isLogin={isLogin}/>
+        {isLogin && props.children}
+        {!isLogin && <TodoIntroduction />}
     </Fragment>
 }
 export default Layout;
