@@ -11,6 +11,7 @@ function HomePage() {
   // const notification = useSelector((state) => state.ui.notification);
   const [hideNotification, setHideNotification] = useState(false); // This state is used to hide notification after a certain time
   const notification = useSelector((state) => state.ui.notification); // Get notification object from configureStore
+  const isLogin = useSelector((state) => state.auth.isLogin)
 
   // Automatically hide notification after 1.5s
   useEffect(() => {
@@ -20,8 +21,8 @@ function HomePage() {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchTodoData());
-  }, [dispatch]);
+    isLogin && dispatch(fetchTodoData());
+  }, [dispatch, isLogin]);
 
   let displayResult = (
     <h3 style={{ textAlign: "center", marginTop: "4rem" }}>Loading...</h3>
@@ -33,6 +34,7 @@ function HomePage() {
         </h3>
       ))
     : (displayResult = <TodoList />);
+  
   return (
     <Fragment>
       <Head>
