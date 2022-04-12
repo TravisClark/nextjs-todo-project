@@ -1,0 +1,41 @@
+.todoItem {
+  padding: 1em;
+  margin: 1em;
+  cursor: pointer;
+}
+
+.todoItem .control {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todoItem .controlDate {
+  display: flex;
+  align-items: center;
+}
+
+.todoItem .controlDate p {
+  margin-left: 1em;
+}
+.controlDate .edit {
+  margin-left: 2em;
+  color: #4834d4;
+  opacity: 0;
+  transform: translateX(0);
+}
+.todoItem:hover .edit {
+  animation: edit-animation 0.3s ease-in forwards;
+}
+
+@keyframes edit-animation {
+  to {
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+}
+@keyframes delete-animation {
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}

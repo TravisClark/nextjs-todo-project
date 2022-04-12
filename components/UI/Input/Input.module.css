@@ -1,0 +1,19 @@
+.input {
+  min-width: 500px;
+  grid-template-columns: 100px 100%;
+  margin: 1em;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.input label {
+  font-weight: bold;
+}
+
+.input input {
+  width: 100%;
+  padding: 0.7em;
+  margin-left: 1em;
+  border-radius: 10px;
+  border-color: #f8f8f8;
+}

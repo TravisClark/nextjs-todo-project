@@ -1,0 +1,101 @@
+.todo-addform {
+  position: absolute;
+  top: 25%;
+  width: 100%;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.todo-addform form {
+  background-color: #fff;
+  padding: 2em;
+  width: 50%;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.todo-addform .control input,
+.control textarea {
+  border-radius: 10px;
+  padding: 1em;
+  width: 100%;
+}
+
+.todo-addform .control, .selectDay, .selectTime {
+  white-space: nowrap;
+  margin-bottom: 1em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.selectTime label {
+  min-width: 20px !important;
+}
+
+.todo-addform textarea {
+  height: 20vh;
+}
+
+.todo-addform label {
+  font-weight: bold;
+  margin-right: 1em;
+  min-width: 100px;
+}
+
+.todo-addform button {
+  padding: 1em 1.2em;
+  border-radius: 10px;
+  font-weight: 600;
+  display: block;
+  margin: auto;
+  background-color: #1e3799;
+  color: #fff;
+  border: none;
+}
+
+.todo-addform button:hover {
+  cursor: pointer;
+  background-color: #4a69bd;
+}
+
+@media (max-width: 1440px) {
+  .todo-addform form {
+    max-width: 650px;
+    width: 100%;
+  }
+  .selectTime label {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 1024px){
+  .todo-addform form {
+    max-width: 550px;
+  }
+}
+
+@media (max-width: 768px) {
+  .todo-addform form {
+    width: 400px;
+  }
+
+  .todo-addform .control {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .todo-addform label {
+    margin: 0.5em;
+  }
+
+  .todo-addform .selectDay,
+  .todo-addform .selectTime {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start
+  }
+
+  .todo-addform label {
+    align-self: start;
+  }
+}

@@ -1,0 +1,13 @@
+.button-control {
+  display: flex;
+}
+.button-control .deleteBtn {
+  background-color: #d63031;
+  padding: 10px 15px;
+  font-size: .9em;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 650;
+  margin-left: 0;
+  cursor: pointer;
+}

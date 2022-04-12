@@ -1,0 +1,37 @@
+.header {
+  position: fixed;
+  display: flex;
+  padding: .5em;
+  background-color: #2c2c54;
+  width: 100%;
+  color: #fff;
+  justify-content: space-around;
+  z-index: 100;
+}
+
+.header ul {
+  list-style: none;
+  display: flex;
+}
+.header li {
+  margin: auto 2em;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+.main-image{
+  height: 45vh;
+}
+.main-image img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  max-width:none;
+  clip-path: polygon(0 0, 70% 0%, 100% 0, 100% 82%, 50% 100%, 0 100%, 0% 70%, 0% 30%);
+}
+
+@media (max-width: 680px){
+  .header li{
+    font-size: 1em;
+  }
+}
