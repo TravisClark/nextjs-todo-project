@@ -17,3 +17,8 @@ a {
 * {
   box-sizing: border-box;
 }
+button {
+  padding: 1em 1.2em;
+  border-radius: 10px;
+  font-weight: 600;
+}

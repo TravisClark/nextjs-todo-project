@@ -7,8 +7,8 @@ function Layout(props){
     const isLogin = useSelector((state)=> state.auth.isLogin)
     return <Fragment>
         <Header isLogin={isLogin}/>
-        {isLogin && props.children}
-        {!isLogin && <TodoIntroduction />}
+        { props.children}
+        {/* {!isLogin && <TodoIntroduction />} */}
     </Fragment>
 }
 export default Layout;
