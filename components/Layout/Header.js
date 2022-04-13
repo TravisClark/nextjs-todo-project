@@ -16,7 +16,7 @@ const Header = (props) => {
   ) : (
     <ul>
       <li>
-        <Link href="/">Login</Link>
+        <Link href="/authentication">Login</Link>
       </li>
     </ul>
   );

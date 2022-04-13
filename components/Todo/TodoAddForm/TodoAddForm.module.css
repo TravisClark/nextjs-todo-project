@@ -44,9 +44,6 @@
 }
 
 .todo-addform button {
-  padding: 1em 1.2em;
-  border-radius: 10px;
-  font-weight: 600;
   display: block;
   margin: auto;
   background-color: #1e3799;
