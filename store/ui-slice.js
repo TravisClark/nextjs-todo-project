@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const uiSlice = createSlice({
   name: "ui",
-  initialState: { notification: {status: '', message: ''} }, // status: error or success
+  initialState: { notification: {status: '', message: ''}, wrongPwWarning: false }, // status: error or success
   reducers: {
     updateNotification: (state, action) => {
       state.notification = {
@@ -11,6 +11,9 @@ const uiSlice = createSlice({
       }
       console.log(state.notification)
     },
+    wrongPwWarningNotification: (state, action) => {
+      state.wrongPwWarning = action.payload;
+    }
   },
 });
 
