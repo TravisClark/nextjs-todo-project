@@ -4,22 +4,28 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     isLoggedIn: false,
-    email: "",
-    password: "",
-    confirmPassword: "",
+    accountData: {},
     warningMessage: "",
-    validation: {pwChecked: true},
+    validation: { pwChecked: true },
   },
   reducers: {
-    registerPwChecked(state, action) {
-      action.payload.password !== action.payload.confirmPassword
-        ? (state.pwChecked = false)
-        : (state.pwChecked = true);
-    },
     loginHandler(state, action) {
-      localStorage.setItem('accountData', JSON.stringify(action.payload));
+      localStorage.setItem("accountData", JSON.stringify(action.payload));
       state.isLoggedIn = true;
-
+    },
+    autoLoginHandler(state) {
+      state.accountData = JSON.parse(localStorage.getItem("accountData"));
+      state.accountData
+        ? (state.isLoggedIn = true)
+        : (state.isLoggedIn = false);
+    },
+    logoutHandler(state) {
+      localStorage.removeItem("accountData");
+      state.isLoggedIn = false;
+      state.accountData = {};
+    },
+    registerStateUpdates(state) {
+      state.registerState = true;
     }
   },
 });

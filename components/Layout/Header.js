@@ -2,15 +2,28 @@
 import { Fragment } from "react";
 import classes from "./Header.module.css";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/auth-slice"
+import { useRouter } from "next/router";
+import { todoActions } from "../../store/todo-slice";
 const Header = (props) => {
-  
-  let authLayout = props.isLogin ? (
+  const dispatch = useDispatch();
+  const route = useRouter();
+  const logoutHandler = ()=>{
+    dispatch(authActions.logoutHandler())
+    dispatch(todoActions.clearTodoList())
+    route.push('/')
+  }
+  let authLayout = props.isLoggedIn ? (
     <ul>
       <li>
         <Link href="/">Todo list</Link>
       </li>
       <li>
         <Link href="/add-todo-form">Add Todo item</Link>
+      </li>
+      <li>
+        <button onClick={logoutHandler}>Logout</button>
       </li>
     </ul>
   ) : (

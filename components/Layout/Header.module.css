@@ -19,6 +19,14 @@
   font-size: 1.2em;
 }
 
+.header button{
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 .main-image{
   height: 45vh;
 }
