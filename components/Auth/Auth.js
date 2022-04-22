@@ -3,17 +3,17 @@ import classes from "./Auth.module.css";
 import Input from "../UI/Input/Input";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "../../store/auth-slice";
 import { authRequest } from "../../store/auth-actions";
 import { useRouter } from "next/router";
 const Auth = () => {
   const dispatch = useDispatch();
   const route = useRouter();
-  // const pwChecked = useSelector((state) => state.auth.pwChecked);
-  const wrongPwWarning = useSelector((state) => state.ui.wrongPwWarning)
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  const {wrongPwWarning} = useSelector((state) => state.ui);
+  const {isLoggedIn} = useSelector((state) => state.auth);
   const [isLogin, setIsLogin] = useState(true);
   const [pwChecked, setPwChecked] = useState(true);
+  const { userId } = useSelector((state) =>
+    state.auth.accountData ? state.auth.accountData : "")
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPwRef = useRef();
@@ -36,17 +36,22 @@ const Auth = () => {
 
   const submitAuthHandler = (e) => {
     e.preventDefault();
+    const email = emailRef.current.value;
+    const index = email.indexOf("@");
+    const userId = email.substring(0, index);
     const authData = {
-      email : emailRef.current.value,
-      password : passwordRef.current.value,
-      req: isLogin ? 'login' : 'register',
-    }
+      email,
+      password: passwordRef.current.value,
+      userId,
+      req: isLogin ? "login" : "register",
+    };
     dispatch(authRequest(authData));
   };
-
+  
   useEffect(() => {
-    isLoggedIn && route.push('/')
-  },[route, isLoggedIn])
+    isLoggedIn && route.replace(userId)
+    
+  }, [route, isLoggedIn, userId]);
 
   return (
     <Card className={classes["auth-card"]}>
@@ -64,7 +69,7 @@ const Auth = () => {
             onChange={registerPwChecked}
           />
         )}
-        {!pwChecked || wrongPwWarning && wrongPwMessage}
+        {!pwChecked || wrongPwWarning ? wrongPwMessage : ""}
         {submitBtn}
         <p onClick={changeForm}>
           {isLogin ? "Create a new account!" : "Login with existing account!"}

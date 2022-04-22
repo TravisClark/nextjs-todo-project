@@ -1,7 +1,10 @@
 .button-control {
   display: flex;
 }
-.button-control .deleteBtn {
+#deleteBtn {
+  position: absolute;
+  bottom: 8%;
+  left: 65%;
   background-color: #d63031;
   padding: 10px 15px;
   font-size: .9em;

@@ -3,8 +3,8 @@ import Card from "../../UI/Card/Card";
 import classes from "./TodoIntroduction.module.css";
 
 const TodoIntroduction = () => {
-  const isLogin = useSelector((state) => state.auth.isLogin);
-  let content = !isLogin ? (
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  let content = !isLoggedIn ? (
     <p className={classes.content}>
       Hi! Welcome to todo page. This is my first project and as its name, you
       can create your own todo list with your existing account. Oh and if you

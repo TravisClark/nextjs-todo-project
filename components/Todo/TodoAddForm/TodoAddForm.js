@@ -19,7 +19,8 @@ const TodoAddForm = () => {
   // Place where we save data of the add form
   const dispatch = useDispatch();
   const route = useRouter();
-  const {todoList} = useSelector((state) => state.todo);
+  const { todoList } = useSelector((state) => state.todo);
+  const { userId } = useSelector((state) => state.auth.accountData);
   const { handleSubmit, control } = useForm({ defaultValues });
   /*
    * control - a function that will integrate external controlled components. Also gives them onChange, onBlur, name, ref
@@ -38,11 +39,12 @@ const TodoAddForm = () => {
     // * When submitting, route.pathname will be a sign that its time to sendTodoData and push away
     if (!route.pathname) {
       setTimeout(async () => {
-        await dispatch(sendTodoData(todoList));
+        const sendData = { todoList, userId };
+        await dispatch(sendTodoData(sendData));
         await route.push("/");
       }, 100);
     }
-  }, [todoList, dispatch, route]);
+  }, [todoList, dispatch, route, userId]);
 
   return (
     <Card className={classes["todo-addform"]}>
