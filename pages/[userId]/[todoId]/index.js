@@ -1,15 +1,15 @@
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { fetchTodoData, sendTodoData } from "../../store/todo-actions";
+import { fetchTodoData, sendTodoData } from "../../../store/todo-actions";
 
 let localStoreItem; //* store data from localStorage when client is reloaded
 // ? Next.js pre-renders every page on the server which means generates HTML for each page in advance itself so that page can be fully interacted
 // ? The HTML rendered on the browser doesn't match the one generated on the server
 // ? Using dynamic with ssr prevents the component from being included on the server, and dynamically loads it on the client side only
 const DynamicTodoModifyForm = dynamic(
-  () => import("../../components/Todo/TodoModifyForm/TodoModifyForm.js"),
+  () => import("../../../components/Todo/TodoModifyForm/TodoModifyForm.js"),
   { ssr: false }
 );
 
@@ -29,10 +29,11 @@ function TodoDetails() {
       setTimeout(async () => {
         const sendData = { todoList, userId };
         await dispatch(sendTodoData(sendData)); // *Send todoData after getting most update data
-        await route.replace("/");
+        await route.replace(`/${userId}`);
       }, 100);
-      //  * Async await helps us to make sure that route.replace will execute properly after dispatching
     }
+    //  * Async await helps us to make sure that route.replace will execute properly after dispatching
+
     !todoData && isReady && !submitState && dispatch(fetchTodoData(userId)); //*When reloading page, all data will be lost in store, so we need to fetch it again
   }, [todoData, dispatch, userId, isReady, submitState, todoList, route]);
 

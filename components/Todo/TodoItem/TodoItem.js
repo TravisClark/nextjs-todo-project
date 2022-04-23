@@ -2,11 +2,15 @@ import Card from "../../UI/Card/Card";
 import classes from "./TodoItem.module.css";
 import { useRouter } from "next/router";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const TodoItem = (props) => {
   const route = useRouter();
+  const { userId } = useSelector((state) =>
+    state.auth.accountData ? state.auth.accountData : ""
+  );
   const showDetailHandler = () => {
-    route.push(`/${props.id}`);
+    route.push(`/${userId}/${props.id}`);
   };
   return (
     <Card className={classes.todoItem}>

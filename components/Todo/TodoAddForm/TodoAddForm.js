@@ -41,7 +41,7 @@ const TodoAddForm = () => {
       setTimeout(async () => {
         const sendData = { todoList, userId };
         await dispatch(sendTodoData(sendData));
-        await route.push("/");
+        await route.push(`/${userId}`);
       }, 100);
     }
   }, [todoList, dispatch, route, userId]);

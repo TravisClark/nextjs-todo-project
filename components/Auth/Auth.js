@@ -49,8 +49,7 @@ const Auth = () => {
   };
   
   useEffect(() => {
-    isLoggedIn && route.replace(userId)
-    
+    if(isLoggedIn) return ()=> route.replace(`/${userId}`) 
   }, [route, isLoggedIn, userId]);
 
   return (
