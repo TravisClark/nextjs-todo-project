@@ -1,26 +1,38 @@
 /* eslint-disable @next/next/no-img-element */
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import classes from "./Header.module.css";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { authActions } from "../../store/auth-slice"
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../store/auth-slice";
 import { useRouter } from "next/router";
 import { todoActions } from "../../store/todo-slice";
 const Header = (props) => {
   const dispatch = useDispatch();
   const route = useRouter();
-  const logoutHandler = ()=>{
-    dispatch(authActions.logoutHandler())
-    dispatch(todoActions.clearTodoList())
-    route.push('/')
-  }
+  const [logoutState, setLogoutState] = useState(false);
+  const { userId } = useSelector((state) =>
+    state.auth.accountData ? state.auth.accountData : ""
+  );
+  const addFormLink = `/${userId}/add-todo-form`;
+  const homePageLink = `/${userId}`;
+  const logoutHandler = () => {
+    dispatch(authActions.logoutHandler());
+    dispatch(todoActions.clearTodoList());
+    setLogoutState(true);
+  };
+  useEffect(() => {
+    if (logoutState) {
+      setLogoutState(false);
+      return () => route.replace("/");
+    }
+  }, [route, logoutState]);
   let authLayout = props.isLoggedIn ? (
     <ul>
       <li>
-        <Link href="/">Todo list</Link>
+        <Link href={homePageLink}>Todo list</Link>
       </li>
       <li>
-        <Link href="/add-todo-form">Add Todo item</Link>
+        <Link href={addFormLink}>Add Todo item</Link>
       </li>
       <li>
         <button onClick={logoutHandler}>Logout</button>

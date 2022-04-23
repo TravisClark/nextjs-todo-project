@@ -18,7 +18,7 @@ const TodoModifyForm = ({ todoData, submitStateUpdate }) => {
    *function that will save all data in the form */
   const onSubmit = (dataInput) => {
     dispatch(todoActions.updateTodoList(dataInput));
-    submitStateUpdate();
+    submitStateUpdate(true);
     // *Redirect to Home page after sending data
   };
 

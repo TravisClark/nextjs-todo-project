@@ -1,10 +1,8 @@
-import { Fragment, useEffect } from "react";
 import { useSelector } from "react-redux";
-import Card from "../../UI/Card/Card";
 import TodoItem from "../TodoItem/TodoItem";
 import classes from "./TodoList.module.css";
 
-const TodoList = (props) => {
+const TodoList = () => {
   const {todoList} = useSelector(state => state.todo)
   const todoItems = todoList.map((todoItem) => (
     <TodoItem
