@@ -1,16 +1,96 @@
-.button-control {
+.todo-addform {
+  background-color: transparent;
+  box-shadow: none;
+  transform: translateY(-25%);
+}
+
+.todo-addform .form {
+  width: min(100% - 25rem, 50vw);
+  margin-inline: auto;
+  background-color: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 15px;
+}
+
+.todo-addform input,
+.todo-addform textarea {
+  border-radius: 10px;
+  padding: 1em;
+  width: 100%;
+  /* resize: both; */
+}
+
+.todo-addform textarea {
+  height: 20vh;
+}
+
+.todo-addform label {
+  align-self: center;
+  font-weight: bold;
+  white-space: nowrap;
+  min-width: 100px;
+  margin-right: 1rem;
+}
+
+.todo-addform .control,
+.control .selectDay,
+.control .selectTime {
   display: flex;
+  margin-bottom: 1rem;
+}
+
+.control .selectTime {
+  margin-left: 2rem;
+}
+
+.todo-addform .submitBtn {
+  left: 40%;
+  position: absolute;
+  margin: auto;
+  background-color: #1e3799;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.todo-addform .submitBtn:hover {
+  background-color: #4a69bd;
 }
 #deleteBtn {
-  position: absolute;
-  bottom: 8%;
-  left: 65%;
   background-color: #d63031;
   padding: 10px 15px;
-  font-size: .9em;
+  font-size: 0.9em;
   border-radius: 10px;
   color: #fff;
   font-weight: 650;
-  margin-left: 0;
   cursor: pointer;
+  position: relative;
+  left: 70%;
+}
+
+#deleteBtn:hover {
+  background-color: #e94242;
+}
+
+@media (max-width: 1276px) {
+  .control .selectTime label {
+    margin-right: 0;
+    min-width: 3rem;
+  }
+}
+@media (max-width: 1048px) {
+  .todo-addform .control,
+  .control .selectDay,
+  .control .selectTime {
+    flex-direction: column;
+  }
+
+  .todo-addform label{
+    align-self: start;
+    margin-bottom: 0.8rem;
+  }
+
+  .todo-addform .selectTime{
+    margin-left: 0;
+  }
 }

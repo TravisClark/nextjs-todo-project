@@ -27,7 +27,7 @@ export const authRequest = (authData) => {
     };
     try {
       await sendRequest();
-      dispatch(authActions.loginHandler(authData))
+      await dispatch(authActions.loginHandler(authData))
       console.log("Authentication successful");
     } catch (error) {
       alert(error)
