@@ -8,33 +8,35 @@ import { useRouter } from "next/router";
 const Auth = () => {
   const dispatch = useDispatch();
   const route = useRouter();
-  const {wrongPwWarning} = useSelector((state) => state.ui);
-  const {isLoggedIn} = useSelector((state) => state.auth);
+  const { wrongPwWarning } = useSelector((state) => state.ui);
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const [isLogin, setIsLogin] = useState(true);
   const [pwChecked, setPwChecked] = useState(true);
   const { userId } = useSelector((state) =>
-    state.auth.accountData ? state.auth.accountData : "")
+    state.auth.accountData ? state.auth.accountData : ""
+  );
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPwRef = useRef();
   const changeForm = () => {
     setIsLogin((prevState) => !prevState);
+    setPwChecked(true);
   };
 
-  const wrongPwMessage = <p>Wrong password. Please try again.</p>;
+  const wrongPwMessage = <p>Password and confirm password must be match.</p>;
   const registerPwChecked = () => {
     passwordRef.current.value !== confirmPwRef.current.value
       ? setPwChecked(false)
       : setPwChecked(true);
   };
-  let submitBtn;
 
+  let submitBtn;
   //* Check if the password and confirmPassword match. If true, submitBtn will be ready, if not, submitBtn will be disabled.
   !pwChecked && !isLogin
     ? (submitBtn = <button disabled>Submit</button>)
     : (submitBtn = <button className={classes.readyBtn}>Submit</button>);
 
-  const submitAuthHandler = (e) => {
+  const submitAuthHandler = async (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
     const index = email.indexOf("@");
@@ -47,9 +49,11 @@ const Auth = () => {
     };
     dispatch(authRequest(authData));
   };
-  
+
   useEffect(() => {
-    if(isLoggedIn) return ()=> route.replace(`/${userId}`) 
+    if (isLoggedIn) {
+      route.replace(`/${userId}`);
+    }
   }, [route, isLoggedIn, userId]);
 
   return (
@@ -59,7 +63,13 @@ const Auth = () => {
           {isLogin ? "Login" : "Register"}
         </label>
         <Input label="Email: " ref={emailRef} type="email" required />
-        <Input label="Password: " ref={passwordRef} type="password" required />
+        <Input
+          label="Password: "
+          ref={passwordRef}
+          type="password"
+          required
+          onChange={!isLogin ? registerPwChecked : undefined}
+        />
         {!isLogin && (
           <Input
             label="Confirm password: "

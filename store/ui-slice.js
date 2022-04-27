@@ -12,7 +12,6 @@ const uiSlice = createSlice({
         status: action.payload.status,
         message: action.payload.message,
       };
-      console.log(state.notification);
     },
     wrongPwWarningNotification: (state, action) => {
       state.wrongPwWarning = action.payload;

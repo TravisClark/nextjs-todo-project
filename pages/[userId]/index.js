@@ -1,34 +1,38 @@
 import Head from "next/head";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTodoData } from "../../store/todo-actions";
 import TodoIntroduction from "../../components/Todo/TodoIntroduction/TodoIntroduction";
 import TodoList from "../../components/Todo/TodoList/TodoList";
 import Notification from "../../components/UI/Notification/Notification";
+import { useRouter } from "next/router";
 
-function HomePage(){
-    const dispatch = useDispatch();
+function HomePage() {
+  const dispatch = useDispatch();
+  const { isReady } = useRouter();
   const [hideNotification, setHideNotification] = useState(false); // This state is used to hide notification after a certain time
   const notification = useSelector((state) => state.ui.notification); // Get notification object from configureStore
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const { userId } = useSelector((state) =>
     state.auth.accountData ? state.auth.accountData : ""
   );
-
+  console.count()
   // Automatically hide notification after 1.5s
   useEffect(() => {
-    setTimeout(() => {
-      setHideNotification(true);
-    }, 1500);
-    isLoggedIn && dispatch(fetchTodoData(userId));
-  }, [dispatch, isLoggedIn, userId]);
+    if(isReady){
+      // fetchDataHandler()
+      dispatch(fetchTodoData(userId))
+      setTimeout(() => {
+        setHideNotification(true);
+      }, 1500);
+    }
+  }, [ isReady, userId, dispatch]);
 
   //* Display loading message when system is fetching data
   let displayResult = (
     <h3 style={{ textAlign: "center", marginTop: "4rem" }}>Loading...</h3>
   );
   //* When fetching data got error, display that error message
-  notification.status === "error" && isLoggedIn
+  notification.status === "error"
     ? (displayResult = (
         <h3 style={{ textAlign: "center", marginTop: "4rem" }}>
           There is no data
@@ -52,9 +56,19 @@ function HomePage(){
         ""
       )}
       <TodoIntroduction />
-      {isLoggedIn && displayResult}
+      {displayResult}
     </Fragment>
   );
 }
 export default HomePage;
 
+// export async function getServerSideProps(context) {
+//   const id = context.params.userId;
+//   const request = await fetch(`https://learned-maker-258114-default-rtdb.firebaseio.com/${id}.json`);
+//   const data = await request.json();
+//   return{
+//     props: {
+//       todoList: data
+//     }
+//   }
+// }

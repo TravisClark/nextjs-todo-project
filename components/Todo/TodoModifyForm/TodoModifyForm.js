@@ -1,8 +1,7 @@
 import BasicSelect from "../../UI/BasicSelect/BasicSelect";
 import Card from "../../UI/Card/Card";
 
-import classes from "../TodoAddForm/TodoAddForm.module.css"; // Form is basically the same as add form
-import cssClasses from "./TodoModifyForm.module.css";
+import classes from "./TodoModifyForm.module.css";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { todoActions } from "../../../store/todo-slice";
@@ -18,7 +17,7 @@ const TodoModifyForm = ({ todoData, submitStateUpdate }) => {
    *function that will save all data in the form */
   const onSubmit = (dataInput) => {
     dispatch(todoActions.updateTodoList(dataInput));
-    submitStateUpdate(true);
+    submitStateUpdate();
     // *Redirect to Home page after sending data
   };
 
@@ -31,7 +30,7 @@ const TodoModifyForm = ({ todoData, submitStateUpdate }) => {
   return (
     <React.StrictMode>
       <Card className={classes["todo-addform"]}>
-        <div>
+        <div className={classes.form}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className={`${classes.control} ${classes.todoName}`}>
               <label>Todo Name:</label>
@@ -68,11 +67,9 @@ const TodoModifyForm = ({ todoData, submitStateUpdate }) => {
                 render={({ field }) => <textarea {...field} required />}
               />
             </div>
-            <div className={cssClasses["button-control"]}>
-              <button>Submit</button>
-            </div>
+              <button className={classes.submitBtn}>Submit</button>
           </form>
-          <button id={cssClasses.deleteBtn} onClick={removeTodoHandler}>
+          <button id={classes.deleteBtn} onClick={removeTodoHandler}>
             Delete
           </button>
         </div>

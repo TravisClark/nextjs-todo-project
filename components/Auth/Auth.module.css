@@ -21,7 +21,7 @@
   outline: 1px solid #e9e9efee;
 }
 .auth-form Input {
-    width: 18rem;
+    width: 18rem
 }
 
 .auth-form .authTitle{
@@ -48,8 +48,18 @@
 
 .auth-form p{
     cursor: pointer;
+    /* width: min(100%-2rem, 400px); */
+  text-align: center;
 }
-
-/* .auth-form .disabledBtn:hover{
-  cursor
-} */
+@media (max-width: 952px){
+  .auth-card{
+    max-width: 20rem;
+  }
+  .auth-form{
+    width: min(100% - 4rem);
+    margin-inline: auto;
+  }
+  .auth-form Input{
+    width: min(100%);
+  }
+}

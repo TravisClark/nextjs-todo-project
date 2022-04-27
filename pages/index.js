@@ -5,7 +5,7 @@ import TodoIntroduction from "../components/Todo/TodoIntroduction/TodoIntroducti
 import { useRouter } from "next/router";
 
 function IntroductionHomePage() {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const {isLoggedIn} = useSelector((state) => state.auth);
   const route = useRouter();
   const { userId } = useSelector((state) =>
     state.auth.accountData ? state.auth.accountData : ""

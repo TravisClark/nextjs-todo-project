@@ -14,7 +14,6 @@ export const sendTodoData = (todoData) => {
         method: "PUT",
         body: JSON.stringify(todoData.todoList),
       });
-      console.log(todoData)
       if (!response.ok) {
         dispatch(
           uiActions.updateNotification({
@@ -58,13 +57,12 @@ export const fetchTodoData = (userId) => {
     };
     try {
       const todoData = await sendRequest();
-      console.log(todoData);
       dispatch(todoActions.getTodoList({
         todoList: todoData || [],  
       }));
       // Throw an error if we couldn't fetch any data (empty array)'
-      if (todoData.length === 0) {
-        throw new Error("todo");
+      if (todoData === null) {
+        throw new Error("Data is empty");
       }
 
       dispatch(

@@ -6,33 +6,36 @@ import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store/auth-slice";
 import { useRouter } from "next/router";
 import { todoActions } from "../../store/todo-slice";
-const Header = (props) => {
+
+const Header = () => {
   const dispatch = useDispatch();
   const route = useRouter();
   const [logoutState, setLogoutState] = useState(false);
+  const isLoggedIn = useSelector((state)=> state.auth.isLoggedIn)
   const { userId } = useSelector((state) =>
     state.auth.accountData ? state.auth.accountData : ""
   );
-  const addFormLink = `/${userId}/add-todo-form`;
-  const homePageLink = `/${userId}`;
+  // * Function that change logoutState and transfer to homepage if its true
   const logoutHandler = () => {
     dispatch(authActions.logoutHandler());
     dispatch(todoActions.clearTodoList());
     setLogoutState(true);
   };
+
   useEffect(() => {
     if (logoutState) {
-      setLogoutState(false);
+      setLogoutState(false); // * Change logout state back to false to get rid of infinite loop
       return () => route.replace("/");
     }
   }, [route, logoutState]);
-  let authLayout = props.isLoggedIn ? (
+  
+  let authLayout = isLoggedIn ? (
     <ul>
       <li>
-        <Link href={homePageLink}>Todo list</Link>
+        <Link href={`/${userId}`}>Todo list</Link>
       </li>
       <li>
-        <Link href={addFormLink}>Add Todo item</Link>
+        <Link href={`/${userId}/add-todo-form`}>Add Todo item</Link>
       </li>
       <li>
         <button onClick={logoutHandler}>Logout</button>
