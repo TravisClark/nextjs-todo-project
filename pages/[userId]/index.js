@@ -15,7 +15,6 @@ function HomePage() {
   const { userId } = useSelector((state) =>
     state.auth.accountData ? state.auth.accountData : ""
   );
-  console.count()
   // Automatically hide notification after 1.5s
   useEffect(() => {
     if(isReady){
