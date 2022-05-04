@@ -1,6 +1,6 @@
 .todoIntro{
     margin: -3rem auto;
-    background-color:#535c68;
+    background-color:#535c68 !important;
     color: #fff;
     width: 30%;
     padding: 1.2em;
