@@ -1,7 +1,7 @@
 import { authActions } from "./auth-slice";
 import { uiActions } from "./ui-slice";
 
-const api_Key = "AIzaSyAAed619AkO9nmI95BDSl1MZ321QoOiGBA";
+const api_Key = "AIzaSyCv4_125DSpKP8iVQsInbtovxVGDUEf4GQ";
 const signUpUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${api_Key}`;
 const signInUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${api_Key}`;
 
