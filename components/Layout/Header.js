@@ -11,7 +11,8 @@ const Header = () => {
   const dispatch = useDispatch();
   const route = useRouter();
   const [logoutState, setLogoutState] = useState(false);
-  const isLoggedIn = useSelector((state)=> state.auth.isLoggedIn)
+  const [navbarIsOpen, setNavbarIsOpen] = useState(false);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const { userId } = useSelector((state) =>
     state.auth.accountData ? state.auth.accountData : ""
   );
@@ -28,32 +29,50 @@ const Header = () => {
       return () => route.replace("/");
     }
   }, [route, logoutState]);
-  
+
+  // Desktop navbar
   let authLayout = isLoggedIn ? (
-    <ul>
+    <ul className={navbarIsOpen ? classes.openNav : ""}>
       <li>
         <Link href={`/${userId}`}>Todo list</Link>
       </li>
       <li>
-        <Link href={`/${userId}/add-todo-form`}>Add Todo item</Link>
+        <Link href={`/${userId}/add-todo-form`}>Add item</Link>
       </li>
       <li>
         <button onClick={logoutHandler}>Logout</button>
       </li>
     </ul>
   ) : (
-    <ul>
+    <ul className={navbarIsOpen ? classes.openNav : ""}>
       <li>
         <Link href="/authentication">Login</Link>
       </li>
     </ul>
   );
+  let ham = classes.hamburger;
+  if (navbarIsOpen) {
+    ham = `${classes.open} ${classes.hamburger}`;
+  }
+
+  const openNavHandler = () => {
+    setNavbarIsOpen((prevState) => !prevState);
+  };
 
   return (
     <Fragment>
       <header className={classes.header}>
-        <h1>First Project</h1>
+        <div className={classes["menu-container"]}>
+          <h1>First Project</h1>
+          <button className={ham} onClick={openNavHandler}>
+            <span className={classes["hamburger-top"]}></span>
+            <span className={classes["hamburger-middle"]}></span>
+            <span className={classes["hamburger-bottom"]}></span>
+          </button>
+        </div>
+
         {authLayout}
+        {/* <!-- Hamburger Icon --> */}
       </header>
       <div className={classes["main-image"]}>
         <img

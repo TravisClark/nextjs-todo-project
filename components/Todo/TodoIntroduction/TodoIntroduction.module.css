@@ -1,30 +1,28 @@
-.todoIntro{
-    margin: -3rem auto;
-    background-color:#535c68 !important;
-    color: #fff;
-    width: 30%;
-    padding: 1.2em;
-    animation: intro-appears .7s ease-in forwards;
+.todoIntro {
+  margin: -3rem auto;
+  background-color: #535c68 !important;
+  color: #fff;
+  padding: 2em;
+  animation: intro-appears 0.7s ease-in forwards;
 }
 
-.todoIntro .title{
-    text-align: center;
+.todoIntro .title {
+  text-align: center;
 }
 
-@media (max-width:1100px) {
-    .todoIntro{
-        width: 50%;
-        left: 25%;
-    }
+@media (max-width: 1100px) {
+  .todoIntro {
+    left: 25%;
+  }
 }
 
-@keyframes intro-appears{
-    from{
-        opacity: 0;
-        transform: translateY(-30%);
-    }
-    to{
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes intro-appears {
+  from {
+    opacity: 0;
+    transform: translateY(-30%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
