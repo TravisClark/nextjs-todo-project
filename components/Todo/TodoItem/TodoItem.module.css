@@ -1,14 +1,17 @@
 .todoItem {
   padding: 1em;
-  margin: 1em;
+  margin: auto;
   cursor: pointer;
 }
 
 .todoItem .control {
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
 }
-
+.todoItem .controlTitle {
+  min-width: 200px
+}
 .todoItem .controlDate {
   display: flex;
   align-items: center;
@@ -25,6 +28,21 @@
 }
 .todoItem:hover .edit {
   animation: edit-animation 0.3s ease-in forwards;
+}
+
+@media (max-width:768px){
+  .edit {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .todoItem .control {
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  
 }
 
 @keyframes edit-animation {

@@ -15,7 +15,7 @@ const TodoItem = (props) => {
   return (
     <Card className={classes.todoItem}>
       <li className={classes.control} onClick={showDetailHandler}>
-        <div>
+        <div className={classes.controlTitle}>
           <h3 className={classes.title}>{props.title}</h3>
           <p className={classes.description}>{props.description}</p>
         </div>
