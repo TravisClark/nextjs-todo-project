@@ -16,7 +16,7 @@ function IntroductionHomePage() {
   return (
     <Fragment>
       <Head>
-        <title>Shawn T project</title>
+        <title>Todo project</title>
         <meta name="Todo List" content="Create todo list" />
       </Head>
       <TodoIntroduction />

@@ -63,7 +63,7 @@ const Header = () => {
     <Fragment>
       <header className={classes.header}>
         <div className={classes["menu-container"]}>
-          <h1>First Project</h1>
+          <h1>Mo&apos;s Todo</h1>
           <button className={ham} onClick={openNavHandler}>
             <span className={classes["hamburger-top"]}></span>
             <span className={classes["hamburger-middle"]}></span>
