@@ -26,7 +26,6 @@ const Header = () => {
   const openNavHandler = () => {
     setNavbarIsOpen((prevState) => !prevState);
   };
-
   useEffect(() => {
     if (logoutState) {
       setLogoutState(false); // * Change logout state back to false to get rid of infinite loop

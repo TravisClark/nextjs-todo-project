@@ -22,7 +22,7 @@ export const authRequest = (authData) => {
       );
       if (!response.ok) {
         dispatch(uiActions.wrongPwWarningNotification(true));
-        throw new Error("Authentication failed");
+        throw new Error("Username already exists");
       }
     };
     try {
