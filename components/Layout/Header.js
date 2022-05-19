@@ -23,6 +23,9 @@ const Header = () => {
     setLogoutState(true);
   };
 
+  const openNavHandler = () => {
+    setNavbarIsOpen((prevState) => !prevState);
+  };
   useEffect(() => {
     if (logoutState) {
       setLogoutState(false); // * Change logout state back to false to get rid of infinite loop
@@ -32,32 +35,36 @@ const Header = () => {
 
   // Desktop navbar
   let authLayout = isLoggedIn ? (
-    <ul className={navbarIsOpen ? classes.openNav : ""}>
-      <li>
-        <Link href={`/${userId}`}>Todo list</Link>
-      </li>
-      <li>
-        <Link href={`/${userId}/add-todo-form`}>Add item</Link>
-      </li>
-      <li>
-        <button onClick={logoutHandler}>Logout</button>
-      </li>
-    </ul>
+    <div
+      className={navbarIsOpen ? `${classes.openNav}` : ''}
+    >
+      <ul>
+        <li onClick={openNavHandler}>
+          <Link href={`/${userId}`}>Todo list</Link>
+        </li>
+        <li onClick={openNavHandler}>
+          <Link href={`/${userId}/add-todo-form`}>Add item</Link>
+        </li>
+        <li onClick={openNavHandler}>
+          <button onClick={logoutHandler}>Logout</button>
+        </li>
+      </ul>
+    </div>
   ) : (
-    <ul className={navbarIsOpen ? classes.openNav : ""}>
-      <li>
-        <Link href="/authentication">Login</Link>
-      </li>
-    </ul>
+    <div
+      className={navbarIsOpen ? `${classes.openNav}` : ''}
+    >
+      <ul>
+        <li onClick={openNavHandler}>
+          <Link href="/authentication">Login</Link>
+        </li>
+      </ul>
+    </div>
   );
   let ham = classes.hamburger;
   if (navbarIsOpen) {
     ham = `${classes.open} ${classes.hamburger}`;
   }
-
-  const openNavHandler = () => {
-    setNavbarIsOpen((prevState) => !prevState);
-  };
 
   return (
     <Fragment>

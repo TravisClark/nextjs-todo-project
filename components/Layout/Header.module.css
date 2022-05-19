@@ -11,8 +11,6 @@
   align-items: center;
 }
 
-
-
 .header ul {
   list-style: none;
   display: flex;
@@ -114,12 +112,16 @@
     width: 100%;
     justify-content: space-around;
   }
-  .header ul {
-    display: none;
+  .header .openNav {
+    height: 100vh !important;
   }
   .header,
   .header ul {
     flex-direction: column;
+  }
+
+  .header ul {
+    display: none;
   }
 
   .header ul > * {
@@ -128,8 +130,9 @@
   .hamburger {
     display: block;
   }
-  .openNav {
-    display: flex !important;
+  .openNav ul {
+    transform: translateY(50%);
+    display: flex;
   }
 }
 
