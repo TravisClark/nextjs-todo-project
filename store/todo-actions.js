@@ -5,7 +5,7 @@ import { uiActions } from "./ui-slice";
  * The Action Creator itself will return a function and that another function will eventually return actions
  */
 const dbLink =
-  "https://todo-list-6927f-default-rtdb.firebaseio.com/";
+  "https://todo-84811-default-rtdb.firebaseio.com/";
 
 export const sendTodoData = (todoData) => {
   return async (dispatch) => {
